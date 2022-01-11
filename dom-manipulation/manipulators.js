@@ -19,19 +19,20 @@ console.log(divs);
 //Operating with attributes
 
 //Getting an element attribute content
-let attribute = element.getAttribute(attributeName);
+
+//let attribute = document.getAttribute(attributeName);
 
 let paragraph = document.getElementById('paragraph');
 let paragraphId = paragraph.getAttribute('id');
 console.log(paragraphId); // <== paragraph
 
 //Changing the value of an element’s attribute
-element.setAttribute(name, value);
+//element.setAttribute(name, value);
 
 //exercise
 //Set the href attribute of the a element identified as google-link to http://www.google.com
 let link = document.getElementById('google-link');
-let attribute = link.setAttribute(href, "http://www.google.com");
+//attribute = link.setAttribute(href, "http://www.google.com");
 
 
 //create dom object
@@ -60,7 +61,7 @@ element and insert another before that selected element.
 */
 
 // add h1 tag before our h2 tag
-let parent = document.getElementsByTagName('body')[0]; // you don't have to do this again
+parent = document.getElementsByTagName('body')[0]; // you don't have to do this again
 let h1Tag = document.createElement('h1');
 h1Tag.innerHTML = 'Heading 1 - comes before Heading 2';
 parent.insertBefore(h1Tag, h2Tag);
@@ -78,4 +79,48 @@ let theParagraph = document.getElementById('paragraph');
 parent.removeChild(theParagraph);
 
 
+//clear an existing element
 
+let contentDiv = document.getElementById('content');
+contentDiv.innerHTML = ''; // clears the whole element
+
+
+
+///EVENTS IN JAVASCRIPT ELEMENTS
+
+//Assign events to DOM elements
+
+let button = document.getElementById('add-item-button');
+
+let list = document.getElementById('item-list');
+let number = 1;
+
+button.onclick = function() {
+  console.log('adding an element to the list');
+  let listItem = document.createElement('li');
+  number++;
+  listItem.innerHTML = `Item number + ${number}`;
+};
+
+
+
+//get input 
+
+let input = document.getElementsByTagName('input')[0];
+console.log(input.value); //=> ""
+
+let sendButton = document.getElementById('send-btn');
+// move the input inside the function (this step is optional):
+sendButton.onclick = function() {
+  let input = document.getElementsByTagName('input')[0]; // or leave it as it is, outside
+  console.log(input.value);
+};
+
+
+let liTags = document.getElementsByTagName('li');
+
+for (let i = 0; i < liTags.length; i++) {
+  liTags[i].onclick = function(e) {
+    console.log(e.currentTarget.innerHTML);
+  };
+}
